@@ -1,0 +1,6 @@
+{
+    "watch": [ "src","./" ],
+    "ext": "ts,js,tsx,jsx,yaml,json",
+    "ignore": "*.test.ts",
+    "exec": "node --import=tsimp/import src/server.ts"
+  }

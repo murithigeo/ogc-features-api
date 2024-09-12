@@ -1,0 +1,10 @@
+node_modules
+.env
+compile
+build
+.vscode
+.tap
+coverage
+dist
+.tsimp
+coverage

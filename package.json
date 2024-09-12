@@ -1,0 +1,40 @@
+{
+  "name": "ogc-features-api",
+  "version": "0.5.0",
+  "type": "module",
+  "description": "A reference implementation of OGC-Features-API using nodeJS, exegesis-express & sequelize",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "npx nodemon -exec ",
+    "start": "node dist/server.js",
+    "build": "vite build && npm run start",
+    "test": "vitest"
+  },
+  "keywords": [
+    "ogc-api",
+    "ogc-features"
+  ],
+  "author": "murithigeo",
+  "license": "MIT",
+  "dependencies": {
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-yaml": "^4.1.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/js-yaml": "^4.0.9",
+    "cors": "^2.8.5",
+    "exegesis-express": "^4.0.0",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "rollup-plugin-copy": "^3.5.0",
+    "sequelize": "^6.37.3",
+    "tsimp": "^2.0.11",
+    "typescript": "5.5.4",
+    "vitest": "^2.0.5"
+  },
+  "devDependencies": {
+    "rollup-plugin-node-externals": "^7.1.3"
+  }
+}
