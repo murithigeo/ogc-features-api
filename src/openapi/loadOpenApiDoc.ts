@@ -1,9 +1,7 @@
 import { oas3 } from "exegesis-express";
 import os from "os";
-const MODE = import.meta.env.MODE;
-const PORT =
-  MODE === "production" ? parseInt(import.meta.env.VITE_PORT) ?? 10000 : 3000;
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const MODE = import.meta.env?.MODE;
+const PORT =parseInt(import.meta.env?.VITE_PORT) || 3000;
 import YAML from "js-yaml";
 import fs from "fs";
 import path from "path";
@@ -14,6 +12,7 @@ export default function loadOpenApiDoc(){
   let serversArray: oas3.ServerObject[] = [];
 
   if (MODE === "production") {
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
     if (!BASE_URL) {
       throw new Error(
         "Production hostname via BASE_URL env key must be defined"

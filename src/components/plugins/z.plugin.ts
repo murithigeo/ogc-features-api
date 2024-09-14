@@ -4,7 +4,7 @@ import {
   ExegesisPluginInstance,
 } from "exegesis-express";
 import { ExegesisParametersObject, ParsedZ } from "../../types.js";
-import throwErrorToExegesis from "../throwErrorToExegesis.js";
+import throwErrorToExegesis from "../utils/throwErrorToExegesis.js";
 
 export default function zPluginFunction(
   params: ExegesisParametersObject
