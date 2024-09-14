@@ -11,7 +11,7 @@ let sequelize = new Sequelize({
   },
   host: process.env.DB_HOST ?? "localhost",
   dialect: "postgres",
-  ssl: process.env.NODE_ENV === "production" ? true : false,
+  ssl: import.meta.env.MODE === "production" ? true : false,
   logQueryParameters: true,
   logging(sql){
        console.log(sql)
