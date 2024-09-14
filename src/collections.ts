@@ -4,7 +4,7 @@ import { CollectionConfiguration } from "./types.js";
 const collections: CollectionConfiguration[] = [
   {
     pKeyColumn: "name",
-    storageCrsCode: "CRS84",
+    storageCrsCode: "CRS84h",
     geometryColumnName: "geom",
     collectionId: "points",
     supportedCrs: ["CRS84", 4326, "CRS84h", 4327],
