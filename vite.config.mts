@@ -11,6 +11,7 @@ export default defineConfig({
     hookTimeout: 20000,
   },
   build: {
+    ssr: true,
     emptyOutDir: false,
     outDir: "dist",
     target: "es2022",
