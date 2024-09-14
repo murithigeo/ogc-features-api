@@ -17,7 +17,6 @@ export default ({ mode }) => {
       "process.env": env,
     },
     build: {
-      ssr: true,
       emptyOutDir: false,
       outDir: "dist",
       target: "es2022",
