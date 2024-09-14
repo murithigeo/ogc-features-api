@@ -1,7 +1,7 @@
 import { oas3 } from "exegesis-express";
 import os from "os";
 const MODE = import.meta.env?.MODE;
-const PORT = process.env.PORT || 10000;
+const PORT = parseInt(import.meta.env?.VITE_PORT) || 10000;
 import YAML from "js-yaml";
 import fs from "fs";
 import path from "path";
