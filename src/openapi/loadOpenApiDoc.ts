@@ -1,11 +1,11 @@
 import { oas3 } from "exegesis-express";
 import os from "os";
 const MODE = import.meta.env?.MODE;
-const PORT = process.env.PORT || parseInt(import.meta.env?.VITE_PORT) || 3000;
+const PORT = import.meta.env.VITE_PORT ?? 3000;
 import YAML from "js-yaml";
 import fs from "fs";
 import path from "path";
-console.log(process.env.PORT)
+
 export default function loadOpenApiDoc() {
   let serversArray: oas3.ServerObject[] = [];
 
