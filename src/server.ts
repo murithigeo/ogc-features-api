@@ -1,7 +1,6 @@
 import cors from "cors";
 import exegesisExpress from "exegesis-express";
 import express from "express";
-
 import ApiKeyAuth from "./authentication/ApiKeyAuth.js";
 import BasicAuth from "./authentication/BasicAuth.js";
 import http from "http";
@@ -15,7 +14,6 @@ import allPlugin from "./components/plugins/all.plugin.js";
 import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
 const PORT = parseInt(import.meta.env.VITE_PORT) || 10000;
-//const exegesisOptions: exegesisExpress.ExegesisOptions
 
 async function createServer() {
   const app = express();

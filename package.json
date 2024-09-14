@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npx nodemon -exec ",
     "start": "node dist/server.js",
-    "build": "vite build && npm run start",
+    "build": "vite build",
     "test": "vitest"
   },
   "keywords": [
