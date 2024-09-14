@@ -14,7 +14,7 @@ import allPlugin from "./components/plugins/all.plugin.js";
 import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
 import httpLogging from "./components/httpLogging/index.js";
-const PORT = parseInt(import.meta.env?.VITE_PORT) || 3000;
+const PORT = process.env.PORT||parseInt(import.meta.env?.VITE_PORT) || 3000;
 async function createServer() {
   const app = express();
   app.use(cors());
@@ -48,11 +48,6 @@ async function createServer() {
   app.use(middleware);
   return http.createServer(app);
 }
-if (isNaN(PORT)) {
-  console.error("Invalid port number in .env file" + PORT);
-  process.exit(1);
-}
-
 createServer()
   .then((server) =>
     server.listen(PORT, () => {

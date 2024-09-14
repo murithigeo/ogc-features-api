@@ -1,13 +1,12 @@
 import { oas3 } from "exegesis-express";
 import os from "os";
 const MODE = import.meta.env?.MODE;
-const PORT =parseInt(import.meta.env?.VITE_PORT) || 3000;
+const PORT = process.env.PORT || parseInt(import.meta.env?.VITE_PORT) || 3000;
 import YAML from "js-yaml";
 import fs from "fs";
 import path from "path";
-
-export default function loadOpenApiDoc(){
-
+console.log(process.env.PORT)
+export default function loadOpenApiDoc() {
   let serversArray: oas3.ServerObject[] = [];
 
   if (MODE === "production") {
@@ -56,7 +55,7 @@ export default function loadOpenApiDoc(){
       throw new Error(`Error generating valid server URLs` + serverObject.url);
   }
   const apiDoc = YAML.load(
-    fs.readFileSync(path.join(import.meta.dirname , "/openapi.yaml"), "utf8")
+    fs.readFileSync(path.join(import.meta.dirname, "/openapi.yaml"), "utf8")
   ) as oas3.OpenAPIObject;
   apiDoc.servers = serversArray;
   return apiDoc;
