@@ -5,7 +5,6 @@ import copyPlugin from "rollup-plugin-copy";
 
 export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
-  console.log(env.PORT);
   return defineConfig({
     //TODO: Add tests
     test: {
@@ -15,7 +14,7 @@ export default ({ mode }) => {
     },
     define: {
       //env: loadEnv("", process.cwd()),
-      "import.meta.env.VITE_PORT": env.PORT,
+      "process.env": env,
     },
     build: {
       ssr: true,

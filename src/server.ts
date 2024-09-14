@@ -14,7 +14,7 @@ import allPlugin from "./components/plugins/all.plugin.js";
 import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
 import httpLogging from "./components/httpLogging/index.js";
-const PORT = import.meta.env.VITE_PORT || 3000;
+const PORT = process.env.PORT || 10000;
 async function createServer() {
   const app = express();
   app.use(cors());
