@@ -6,6 +6,7 @@ const PORT =
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 import YAML from "js-yaml";
 import fs from "fs";
+import path from "path";
 console.log(import.meta.env);
 console.log(process.env);
 export default function loadOpenApiDoc(){
@@ -57,7 +58,7 @@ export default function loadOpenApiDoc(){
       throw new Error(`Error generating valid server URLs` + serverObject.url);
   }
   const apiDoc = YAML.load(
-    fs.readFileSync(import.meta.dirname + "/features.openapi.yaml", "utf8")
+    fs.readFileSync(path.join(import.meta.dirname , "/openapi.yaml"), "utf8")
   ) as oas3.OpenAPIObject;
   apiDoc.servers = serversArray;
   return apiDoc;
