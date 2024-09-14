@@ -20,7 +20,7 @@ async function createServer() {
   app.use(cors());
   app.use(httpLogging);
   app.use(
-    rateLimit({ windowMs: 10 * 60 * 1000, skipFailedRequests: true, limit: 30 })
+    rateLimit({ windowMs: 10 * 60 * 1000, skipFailedRequests: true, limit: 1000 })
   );
   app.use((req, res, next) => {
     req.url = decodeURIComponent(req.url);
