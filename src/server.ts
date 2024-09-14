@@ -14,7 +14,7 @@ import allPlugin from "./components/plugins/all.plugin.js";
 import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
 import httpLogging from "./components/httpLogging/index.js";
-const PORT = parseInt(import.meta.env.VITE_PORT) || 10000;
+const PORT = parseInt(import.meta.env?.VITE_PORT) || 10000;
 async function createServer() {
   const app = express();
   app.use(cors());
@@ -28,8 +28,6 @@ async function createServer() {
   );
   app.use((req, res, next) => {
     req.url = decodeURIComponent(req.url);
-    console.log("Decoded URL: ", req.url);
-    console.log("statusCode: ", res.statusCode);
     next();
   });
   const middleware = await exegesisExpress.default(loadOpenApiDoc(), {
@@ -54,7 +52,7 @@ async function createServer() {
 }
 createServer()
   .then((server) =>
-    server.listen(PORT, () => {
+    server.listen(PORT, "0.0.0.0", () => {
       console.log(`Server listening on port ${PORT}`);
     })
   )

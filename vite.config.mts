@@ -14,7 +14,7 @@ export default ({ mode }) => {
     },
     define: {
       //env: loadEnv("", process.cwd()),
-      "process.env": env,
+      //"process.env": env,
     },
     build: {
       emptyOutDir: false,
