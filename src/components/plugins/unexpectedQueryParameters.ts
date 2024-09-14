@@ -27,7 +27,6 @@ function makeExegesisPlugin(
           (param) => !allowedQueryParams.includes(param)
         );
 
-        console.log("Unexpected query parameters: ", unexpectedParams);
         if (unexpectedParams.length > 0) {
           throw new Error("400", {
             cause: `Unexpected query parameters: ${unexpectedParams.join(", ")}`,
