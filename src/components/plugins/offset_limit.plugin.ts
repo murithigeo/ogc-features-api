@@ -10,10 +10,10 @@ export default function offsetLimitPluginFunction(
 ): ExegesisParametersObject {
   const { query } = params;
   const { offset, limit, local } = query;
-  if (offset) {
+  if ("offset" in query) {
     local.offset = offset < 0 ? 0 : offset;
   }
-  if (limit) {
+  if ("limit"in query) {
     local.limit = limit < 0 ? 0 : limit;
   }
   return params;

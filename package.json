@@ -35,6 +35,7 @@
     "vitest": "^2.0.5"
   },
   "devDependencies": {
+    "morgan": "^1.10.0",
     "rollup-plugin-node-externals": "^7.1.3"
   }
 }

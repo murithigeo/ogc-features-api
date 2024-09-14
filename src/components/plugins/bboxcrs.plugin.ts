@@ -1,10 +1,4 @@
 import {
-  ExegesisPlugin,
-  ExegesisPluginContext,
-  ExegesisPluginInstance,
-} from "exegesis-express";
-import {
-  CollectionConfiguration,
   ExegesisParametersObject,
 } from "../../types.js";
 import { FinalCollectionConfiguration } from "../../collections.js";
@@ -17,7 +11,7 @@ export default function bboxCrsPluginFunction(
   const { mtColl }: { mtColl: FinalCollectionConfiguration } = local;
   const bboxCrsParam = bboxCrs ?? crs84Uri;
   
-  if (bboxCrs) {
+  if ("bbox-crs" in params.query) {
     if (!mtColl.crs.includes(bboxCrsParam)) {
       throw new Error("400", {
         cause: `bbox-crs ${bboxCrsParam} not supported for collection ${mtColl.collectionId}`,

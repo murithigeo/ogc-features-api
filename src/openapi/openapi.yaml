@@ -788,7 +788,7 @@ components:
       schema:
         type: integer
         minimum: 0
-        maximum: 500
+        maximum: 100
         default: 100
       style: form
       explode: false

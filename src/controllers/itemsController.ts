@@ -9,9 +9,8 @@ import geojsonFeatureLinks from "../components/links/geojsonFeatureLinks.js";
 
 async function queryAllItems(ctx: ExegesisContext) {
   try {
-    const { contentNegotiation, url, contentCrs } = ctx.params.query.local;
+    const { contentNegotiation, url, contentCrs,limit,offset } = ctx.params.query.local;
     const dbRes = await queryAsGeoJson.getRowsPlusCount(models, ctx.params);
-
     const featurecollection = await geoJsonParsers.toBaseFeatureCollection(
       ctx.params,
       dbRes.rows,

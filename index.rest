@@ -1,0 +1,34 @@
+### Requires the rest extension
+
+@rootUrl=http://localhost:3000
+
+### {root}/
+GET {{rootUrl}}/
+
+### {root}/conformance
+GET {{rootUrl}}/conformance
+
+### {root}/api
+GET {{rootUrl}}/api
+
+### {root}/api.html
+GET {{rootUrl}}/api.html
+
+### {root}/collections
+GET {{rootUrl}}/collections
+
+### {root}/collections/{collectionId}
+GET {{rootUrl}}/collections/points
+
+### {root}/collections/{collectionId}/items
+GET {{rootUrl}}/collections/points/items
+
+
+### {root}/collections/{collectionId}/items/{itemId}
+GET {{rootUrl}}/collections/points/items/Abbott Butte
+
+### ///QGIS Error URL
+GET {{rootUrl}}/collections/points/items
+    ?limit=100
+    &bbox=37.14127931946403294%2C-0.26471250000000313%2C37.45872068053596848%2C-0.03528749999999692
+    &offset=NaN

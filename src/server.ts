@@ -13,14 +13,19 @@ import collectionsController from "./controllers/collectionsController.js";
 import allPlugin from "./components/plugins/all.plugin.js";
 import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
+import httpLogging from "./components/httpLogging/index.js";
 const PORT = parseInt(import.meta.env?.VITE_PORT) || 3000;
-console.log(import.meta.env);
 async function createServer() {
   const app = express();
   app.use(cors());
-  app.use(rateLimit({ windowMs: 10 * 60 * 1000, skipFailedRequests: true }));
+  app.use(httpLogging);
+  app.use(
+    rateLimit({ windowMs: 10 * 60 * 1000, skipFailedRequests: true, limit: 30 })
+  );
   app.use((req, res, next) => {
     req.url = decodeURIComponent(req.url);
+    console.log("Decoded URL: ", req.url);
+    console.log("statusCode: ", res.statusCode);
     next();
   });
   const middleware = await exegesisExpress.default(loadOpenApiDoc(), {
@@ -37,8 +42,8 @@ async function createServer() {
       BasicAuth,
     },
     allowMissingControllers: false,
-    autoHandleHttpErrors: true,
-    plugins: [unexpectedQueryParametersPlugin([]), allPlugin()],
+    allErrors: true,
+    plugins: [ allPlugin(),unexpectedQueryParametersPlugin([])],
   });
   app.use(middleware);
   return http.createServer(app);

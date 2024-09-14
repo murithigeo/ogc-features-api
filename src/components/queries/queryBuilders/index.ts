@@ -58,6 +58,6 @@ export default async function geometryQueryBuilders(
       ].filter((query) => !!query),
     },
   };
-  console.log(JSON.stringify(queries));
+  //console.log(JSON.stringify(queries));
   return queries;
 }

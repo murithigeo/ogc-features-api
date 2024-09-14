@@ -27,13 +27,10 @@ function makeExegesisPlugin(
           (param) => !allowedQueryParams.includes(param)
         );
 
+        console.log("Unexpected query parameters: ", unexpectedParams);
         if (unexpectedParams.length > 0) {
           throw new Error("400", {
-            cause: ctx.makeValidationError(`unexpected query parameters`, {
-              in: "query",
-              name: unexpectedParams.join(";"),
-              docPath: ctx.api.pathItemPtr,
-            }),
+            cause: `Unexpected query parameters: ${unexpectedParams.join(", ")}`,
           });
         }
       } catch (err) {
