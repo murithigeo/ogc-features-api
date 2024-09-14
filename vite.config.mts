@@ -29,7 +29,7 @@ export default defineConfig({
           hook: "buildStart",
           targets: [
             {
-              src: "src/features.openapi.yaml",
+              src: "src/openapi/openapi.yaml",
               dest: "dist",
             },
           ],
