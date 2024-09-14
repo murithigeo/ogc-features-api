@@ -6,7 +6,8 @@ const PORT =
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 import YAML from "js-yaml";
 import fs from "fs";
-
+console.log(import.meta.env);
+console.log(process.env);
 export default function loadOpenApiDoc(){
 
   let serversArray: oas3.ServerObject[] = [];
