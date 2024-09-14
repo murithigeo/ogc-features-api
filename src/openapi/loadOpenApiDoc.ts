@@ -17,8 +17,9 @@ export default function loadOpenApiDoc(){
         "Production hostname via BASE_URL env key must be defined"
       );
     }
+    //Do not use port because render routes all traffic to specific port
     serversArray.push({
-      url: `https://${BASE_URL}:${PORT}`,
+      url: `https://${BASE_URL}`,
       description: "Production Server",
     });
   }

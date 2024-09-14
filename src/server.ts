@@ -14,7 +14,7 @@ import collectionsController from "./controllers/collectionsController.js";
 import allPlugin from "./components/plugins/all.plugin.js";
 import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
-const PORT = parseInt(import.meta.env.VITE_PORT)||10000;
+const PORT = parseInt(import.meta.env.VITE_PORT) || 10000;
 //const exegesisOptions: exegesisExpress.ExegesisOptions
 
 async function createServer() {
@@ -45,8 +45,8 @@ async function createServer() {
   app.use(middleware);
   return http.createServer(app);
 }
-if(isNaN(PORT)){
-  console.error("Invalid port number in .env file"+PORT);
+if (isNaN(PORT)) {
+  console.error("Invalid port number in .env file" + PORT);
   process.exit(1);
 }
 
