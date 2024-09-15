@@ -9,7 +9,7 @@ export default async function httpLogging(
   res: ServerResponse<IncomingMessage>,
   next: NextFunction
 ) {
-  if (import.meta.env?.MODE !== "production") {
+  if (process.env?.NODE_ENV !== "production") {
     if (!fs.existsSync(path.join(import.meta.dirname, "/logs.log"))) {
       fs.openSync(path.join(import.meta.dirname, "/logs.log"), "w");
     }
