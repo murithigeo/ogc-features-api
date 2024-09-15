@@ -52,9 +52,10 @@ async function createServer() {
 }
 createServer()
   .then((server) =>
-    server.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server listening on port ${PORT}`);
-    })
+    server.listen({ port: PORT, hostname: "0.0.0.0" }, () =>
+      
+      console.log(`Server ready at port: ${PORT}/. Listening: ${server.listening}`)
+    )
   )
   .catch((err) => {
     console.error(err);
