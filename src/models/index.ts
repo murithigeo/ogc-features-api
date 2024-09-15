@@ -2,16 +2,16 @@ import { Model, ModelStatic, Op, Sequelize } from "sequelize";
 import pointsModel from "./mountains.model.js";
 import usersModel from "./users.model.js";
 let sequelize = new Sequelize({
-  password: import.meta.env?.DB_PASSWORD ?? "postgres",
-  username: import.meta.env?.DB_USERNAME ?? "postgres",
-  database: import.meta.env?.DB_NAME ?? "postgres",
+  password: process.env?.DB_PASSWORD ?? "postgres",
+  username: process.env?.DB_USERNAME ?? "postgres",
+  database: process.env?.DB_NAME ?? "postgres",
   define: {
     //paranoid: true,
     freezeTableName: true,
   },
-  host: import.meta.env?.DB_HOST ?? "localhost",
+  host: process.env?.DB_HOST ?? "localhost",
   dialect: "postgres",
-  ssl: import.meta.env?.MODE !== "production" ? false : true,
+  ssl: process.env?.MODE !== "production" ? false : true,
   logQueryParameters: true,
   logging(sql){
        console.log(sql)

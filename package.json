@@ -6,9 +6,12 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "npx nodemon -exec ",
-    "start": "node dist/server.js",
+    "start": "node --import=tsimp/import src/server.ts",
     "build": "vite build",
     "test": "vitest"
+  },
+  "engines": {
+    "node": ">=21.7.3"
   },
   "keywords": [
     "ogc-api",

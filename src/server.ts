@@ -14,7 +14,7 @@ import allPlugin from "./components/plugins/all.plugin.js";
 import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
 import httpLogging from "./components/httpLogging/index.js";
-const PORT = parseInt(import.meta.env?.VITE_PORT) || 10000;
+const PORT = process.env.PORT || 80;
 async function createServer() {
   const app = express();
   app.use(cors());
@@ -23,7 +23,7 @@ async function createServer() {
     rateLimit({
       windowMs: 10 * 60 * 1000,
       skipFailedRequests: true,
-      limit: 1000,
+      limit: parseInt(process.env.RATE_LIMIT) || 200,
     })
   );
   app.use((req, res, next) => {
@@ -52,9 +52,8 @@ async function createServer() {
 }
 createServer()
   .then((server) =>
-    server.listen({ port: PORT, hostname: "0.0.0.0" }, () =>
-      
-      console.log(`Server ready at port: ${PORT}/. Listening: ${server.listening}`)
+    server.listen(PORT, () =>
+      console.log(`Server listening: ${server.listening} @ port: ${PORT} `)
     )
   )
   .catch((err) => {

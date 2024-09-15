@@ -1,6 +1,6 @@
 ### Requires the rest extension
 
-@rootUrl=http://localhost:10000
+@rootUrl=http://localhost
 
 ### {root}/
 GET {{rootUrl}}/
