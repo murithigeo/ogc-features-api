@@ -9,16 +9,13 @@ export default async function httpLogging(
   res: ServerResponse<IncomingMessage>,
   next: NextFunction
 ) {
-  if (process.env?.NODE_ENV !== "production") {
-    if (!fs.existsSync(path.join(import.meta.dirname, "/logs.log"))) {
-      fs.openSync(path.join(import.meta.dirname, "/logs.log"), "w");
-    }
-
-    morgan("combined", {
-      stream: fs.createWriteStream(
-        path.join(import.meta.dirname, "/logs.log"),
-        { flags: "a" }
-      ),
-    })(req, res, next);
+  if (!fs.existsSync(path.join(import.meta.dirname, "/logs.log"))) {
+    fs.openSync(path.join(import.meta.dirname, "/logs.log"), "w");
   }
+
+  morgan("combined", {
+    stream: fs.createWriteStream(path.join(import.meta.dirname, "/logs.log"), {
+      flags: "a",
+    }),
+  })(req, res, next);
 }

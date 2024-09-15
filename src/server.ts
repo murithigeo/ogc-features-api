@@ -18,7 +18,6 @@ const PORT = process.env.PORT || 80;
 async function createServer() {
   const app = express();
   app.use(cors());
-  app.use(httpLogging);
   app.use(
     rateLimit({
       windowMs: 10 * 60 * 1000,
@@ -30,6 +29,8 @@ async function createServer() {
     req.url = decodeURIComponent(req.url);
     next();
   });
+  process.env.NODE_ENV !== "production" ? app.use(httpLogging) : null;
+  
   const middleware = await exegesisExpress.default(loadOpenApiDoc(), {
     controllers: {
       rootController,
