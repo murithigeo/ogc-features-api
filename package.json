@@ -6,7 +6,7 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "npx nodemon -exec ",
-    "start": "node --import=tsimp/import src/server.ts",
+    "start": "tsx src/server.ts",
     "build": "vite build",
     "test": "vitest"
   },
@@ -29,6 +29,7 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3",
     "tsimp": "^2.0.11",
+    "tsx": "^4.19.1",
     "typescript": "5.5.4"
   },
   "devDependencies": {
