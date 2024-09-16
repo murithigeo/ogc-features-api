@@ -15,7 +15,7 @@
     "esModuleInterop": true,
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
-    "types": ["node","vite/client"],
+    "types": ["node"],
     "lib": ["DOM", "ES2022"],
     //s"typeRoots": ["./node_modules/@types"],
   },
