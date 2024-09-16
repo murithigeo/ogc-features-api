@@ -30,3 +30,4 @@
 ::ffff:127.0.0.1 - - [15/Sep/2024:10:24:31 +0000] "GET /collections/points/items?limit=100&bbox=37.14127931946403294%2C-0.26471250000000313%2C37.45872068053596848%2C-0.03528749999999692&offset=NaN HTTP/1.1" 400 - "-" "vscode-restclient"
 ::ffff:127.0.0.1 - - [15/Sep/2024:13:46:37 +0000] "GET /collections/points/items?limit=100&bbox=37.14127931946403294%2C-0.26471250000000313%2C37.45872068053596848%2C-0.03528749999999692&offset=NaN HTTP/1.1" 400 - "-" "vscode-restclient"
 ::ffff:127.0.0.1 - - [15/Sep/2024:13:46:41 +0000] "GET /collections/points/items/Abbott%20Butte HTTP/1.1" 200 - "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [16/Sep/2024:16:58:31 +0000] "GET / HTTP/1.1" 200 - "-" "vscode-restclient"

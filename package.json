@@ -7,12 +7,12 @@
   "scripts": {
     "dev": "npx nodemon -exec ",
     "start": "tsx src/server.ts",
-    "build": "vite build",
     "test": "vitest"
   },
   "engines": {
     "node": "=21.7.3"
   },
+  "exports": "./dist/server.mjs",
   "keywords": [
     "ogc-api",
     "ogc-features"
