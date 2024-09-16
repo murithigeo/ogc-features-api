@@ -11,7 +11,7 @@
     "test": "vitest"
   },
   "engines": {
-    "node": ">=21.7.3"
+    "node": "=21.7.3"
   },
   "keywords": [
     "ogc-api",
