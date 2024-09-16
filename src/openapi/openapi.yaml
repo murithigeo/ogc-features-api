@@ -122,7 +122,7 @@ paths:
     x-exegesis-controller: collectionsController
     parameters:
       - $ref: "#/components/parameters/collectionId"
-      - in: path
+      - in: query
         name: allowZ
         schema:
           type: boolean
