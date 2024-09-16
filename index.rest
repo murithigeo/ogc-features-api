@@ -1,6 +1,7 @@
 ### Requires the rest extension
 
-@rootUrl=http://localhost
+@rootUrl=https://ogc-features-api.onrender.com
+##http://localhost
 
 ### {root}/
 GET {{rootUrl}}/
