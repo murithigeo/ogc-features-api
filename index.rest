@@ -1,7 +1,7 @@
 ### Requires the rest extension
 
-@rootUrl=https://ogc-features-api.onrender.com
-##http://localhost
+##@rootUrl=https://ogc-features-api.onrender.com
+@rootUrl=http://localhost
 
 ### {root}/
 GET {{rootUrl}}/
@@ -16,7 +16,7 @@ GET {{rootUrl}}/api
 GET {{rootUrl}}/api.html
 
 ### {root}/collections
-GET {{rootUrl}}/collections
+GET {{rootUrl}}/collections?allowZ=true
 
 ### {root}/collections/{collectionId}
 GET {{rootUrl}}/collections/points

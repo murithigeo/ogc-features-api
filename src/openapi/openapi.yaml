@@ -90,6 +90,15 @@ paths:
       description: >
         Get all collections/datasets currently available in the server.
       parameters:
+        - in: query
+          name: allowZ
+          schema:
+            type: boolean
+            default: false
+          description: >
+            If true, the server is allowed to return a six item bbox. Resulting bbox is subject to whether the 3rd axis values are non-zero
+            The default is false because the OGC Features test suite does not support 3D bboxes
+          required: true
         - $ref: "#/components/parameters/f"
       responses:
         "200":
@@ -113,6 +122,14 @@ paths:
     x-exegesis-controller: collectionsController
     parameters:
       - $ref: "#/components/parameters/collectionId"
+      - in: path
+        name: allowZ
+        schema:
+          type: boolean
+          default: false
+        description: >
+          If true, the server is allowed to return a six item bbox. Resulting bbox is subject to whether the 3rd axis values are non-zero
+        required: true
     get:
       x-exegesis-operationId: getCollectionOne
       parameters:

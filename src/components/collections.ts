@@ -32,6 +32,7 @@ export default async function genCollectionInfo(
   } = xparams.query.local;
   const { modelName, datetimeColName }: FinalCollectionConfiguration = mtColl;
   const { collectionId } = xparams.path;
+  const { allowZ } = xparams.query;
 
   //Instantiate extent_bbox
   let extent_bbox: FourItemBbox[] | SixItemBbox[] = await querySpatialBbox(
@@ -58,7 +59,8 @@ export default async function genCollectionInfo(
   //Get zmin & zmax before deletion
   const zMin = extent_bbox[0][2];
   const zMax = extent_bbox[0][5];
-  if (!zMax && !zMin) {
+console.log(allowZ)
+  if ((!zMax && !zMin ) || !allowZ) {
     extent_bbox = [
       [
         extent_bbox[0][0],
