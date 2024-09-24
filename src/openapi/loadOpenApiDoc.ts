@@ -1,6 +1,6 @@
 import { oas3 } from "exegesis-express";
 import os from "os";
-const MODE = process.env?.NODE_ENV as "production"|"development";
+const MODE = process.env?.NODE_ENV as "production" | "development";
 //const PORT = process.env.PORT || 80;
 import YAML from "js-yaml";
 import fs from "fs";
@@ -37,14 +37,16 @@ export default function loadOpenApiDoc() {
     });
     ips !== 0
       ? serversArray.push({
-          url: `http://${ips}`,//:${PORT}`,
+          url: `http://${ips}`, //:${PORT}`,
           description: "Test Server",
         })
       : null;
-    serversArray.push({
-      url: `http://localhost`,//:${PORT}`,
-      description: `Development Server`,
-    });
+    ips === 0
+      ? serversArray.push({
+          url: `http://localhost`, //:${PORT}`,
+          description: `Development Server`,
+        })
+      : null;
   }
 
   if (serversArray.length < 1) {

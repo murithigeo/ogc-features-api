@@ -1,26 +1,20 @@
-import { ExegesisContext, ExegesisPluginContext } from "exegesis-express";
-import httpMessages from "./httpMessages.js";
-
-export default function throwErrorToExegesis(
+import {
+  ExegesisContext,
+  ExegesisPluginContext,
+  ParameterLocationIn,
+} from "exegesis-express";
+export default function (
   ctx: ExegesisPluginContext | ExegesisContext,
-  err: any
+  name?: string | "f",
+  message?: string,
+  parameterLocationIn?: ParameterLocationIn
 ) {
-  //fix Trying to set status after response has been ended.
-  if (ctx.isResponseFinished()) {
-    const errCode = parseInt(err.message);
-    console.log(err);
-    if (Number.isInteger(errCode)) {
-      ctx.res.status(errCode).pureJson({
-        ...httpMessages[errCode],
-        cause: err.cause,
-        status: errCode,
-      });
-    } else {
-      ctx.res.status(500).pureJson({
-        ...httpMessages[500],
-        //cause: err,
-        status: 500,
-      });
-    }
-  }
+  //console.log(ctx.api.)
+  ctx.res.status(400).json(
+    ctx.makeValidationError(message || "Unsupported content-type/negotiator", {
+      in: parameterLocationIn || "query",
+      docPath: ctx.api.pathItemPtr,
+      name: name || "f",
+    })
+  );
 }

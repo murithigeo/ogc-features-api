@@ -15,6 +15,7 @@ import rateLimit from "express-rate-limit";
 import loadOpenApiDoc from "./openapi/loadOpenApiDoc.js";
 import httpLogging from "./components/httpLogging/index.js";
 const PORT = process.env.PORT || 80;
+const doc = loadOpenApiDoc();
 async function createServer() {
   const app = express();
   app.use(cors());
@@ -30,8 +31,8 @@ async function createServer() {
     next();
   });
   process.env.NODE_ENV !== "production" ? app.use(httpLogging) : null;
-  
-  const middleware = await exegesisExpress.default(loadOpenApiDoc(), {
+
+  const middleware = await exegesisExpress.default(doc, {
     controllers: {
       rootController,
       apiController,
@@ -46,7 +47,7 @@ async function createServer() {
     },
     allowMissingControllers: false,
     allErrors: true,
-    plugins: [allPlugin(), unexpectedQueryParametersPlugin([])],
+    plugins: [unexpectedQueryParametersPlugin([]), allPlugin()],
   });
   app.use(middleware);
   return http.createServer(app);
@@ -54,7 +55,11 @@ async function createServer() {
 createServer()
   .then((server) =>
     server.listen(PORT, () =>
-      console.log(`Server listening: ${server.listening} @ port: ${PORT} `)
+      doc.servers.forEach((s) => {
+        console.log(
+          `server listening: ${server.listening} on address: ${s.url}`
+        );
+      })
     )
   )
   .catch((err) => {

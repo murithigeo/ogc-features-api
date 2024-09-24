@@ -7,7 +7,6 @@ import {
 import { FinalCollectionConfiguration } from "../collections.js";
 import selfAltLinks from "./links/selfAltLinks.js";
 import featureCollectionLinks from "./links/geojsonFeatureCollectionLinks.js";
-import numberMatched from "./utils/numberMatched.js";
 
 async function toFeature(
   row: { [key: string]: any },
@@ -42,24 +41,31 @@ async function toBaseFeatureCollection(
   const { mtColl, url, offset, limit, contentNegotiation } =
     xparams.query.local;
   let links = await selfAltLinks(url, contentNegotiation, appContentTypes);
-  links.push(...(await featureCollectionLinks(links)));
+  links.concat(await featureCollectionLinks(links));
 
+  if (offset < 1 || count - offset - limit === 0) {
+    links.map((l) => l.rel !== "prev");
+  }
+
+  if (count <= 1) {
+    links.map((l) => l.rel !== "next");
+  }
+
+  const features = await Promise.all(
+    rows.map(async (row) => await toFeature(row, mtColl))
+  );
   return {
     type: "FeatureCollection",
     timeStamp: new Date().toJSON(),
-    numberReturned: rows.length,
+    numberMatched: features.length,
     id: xparams.path.instanceId
       ? `${xparams.path.collectionId}-${xparams.path.instanceId}`
       : xparams.path.collectionId,
-    numberMatched: await numberMatched(offset, limit, count),
-    features: await Promise.all(
-      rows.map(async (row) => await toFeature(row, mtColl))
-    ),
-    links,
+    numberReturned: await numberReturned(count, offset, limit),
+    features,
+    links: links,
   };
 }
-
-
 
 const geoJsonParsers = {
   toBaseFeatureCollection,
@@ -67,3 +73,17 @@ const geoJsonParsers = {
 };
 
 export default geoJsonParsers;
+
+async function numberReturned(
+  count: number,
+  offset: number,
+  limit: number
+): Promise<number> {
+  let numberReturned: number = 0;
+  //numberReturned += limit//Math.min(limit, count - offset);
+  const startIndex = Math.min(offset, count);
+  const endIndex = Math.min(startIndex + limit, count);
+  //
+  numberReturned += endIndex - startIndex;
+  return numberReturned;
+}

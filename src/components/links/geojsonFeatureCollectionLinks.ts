@@ -21,28 +21,25 @@ export default async function featureCollectionLinks(
   });
 
   // Add previous page link
-  if (offset) {
-    let xoffset = (offset);
-    let previousPageOffset = xoffset - limit < 0 ? 0 : xoffset - limit;
+  let xoffset = offset;
+  let previousPageOffset = xoffset - limit < 0 ? 0 : xoffset - limit;
 
-    if (previousPageOffset >= 0) {
-      selfLinkHref.searchParams.set("offset", `${previousPageOffset}`);
+  selfLinkHref.searchParams.set("offset", `${previousPageOffset}`);
 
-      links.push({
-        title: "Previous page",
-        rel: "prev",
-        href: selfLinkHref.toString(),
-        type: selfLink.type,
-      });
-    }
-  }
+  links.push({
+    title: "Previous page",
+    rel: "prev",
+    href: selfLinkHref.toString(),
+    type: selfLink.type,
+  });
+
   // Browse link up one level
   selfLinkHref.search = "";
   selfLinkHref.href = new URL(".", selfLinkHref.href).toString().slice(0, -1);
 
   links.push({
     title: "collection metadata",
-    rel: "data",
+    rel: "collection",
     href: selfLinkHref.toString(),
     type: "application/json",
   });

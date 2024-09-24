@@ -42,7 +42,7 @@ async function queryAllItems(ctx: ExegesisContext) {
         throw new Error("400", { cause: "unsupported ct-typ" });
     }
   } catch (error) {
-    throwErrorToExegesis(ctx, error);
+    throwErrorToExegesis(ctx, );
   }
 }
 
@@ -85,7 +85,7 @@ async function querySpecificItem(ctx: ExegesisContext) {
         throw new Error("400", { cause: "unsupported ct-typ" });
     }
   } catch (error) {
-    throwErrorToExegesis(ctx, error);
+    throwErrorToExegesis(ctx, );
   }
 }
 

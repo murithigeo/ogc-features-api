@@ -4,11 +4,11 @@ export default async function geojsonFeatureLinks(
   selfLink: Link
 ): Promise<Link[]> {
   let selfLinkUrl = new URL(selfLink.href);
-  const itemsUrl = new URL(selfLinkUrl);
-  const collectionUrl = new URL(selfLinkUrl);
+  const itemsUrl = new URL(".", selfLinkUrl);
+  //const collectionUrl = new URL(selfLinkUrl);
   itemsUrl.search = "";
   let links: Link[] = [];
-  
+
   links.push({
     title: "items metadata",
     rel: "items",
@@ -17,11 +17,11 @@ export default async function geojsonFeatureLinks(
   });
 
   //Move two level above to collection metadata
-  
+
   links.push({
     title: "collection metadata",
-    rel: "data",
-    href: new URL("..", collectionUrl).href.slice(0, -1),
+    rel: "collection",
+    href: new URL("..", itemsUrl).href.slice(0, -1),
     type: "application/json",
   });
   return links;

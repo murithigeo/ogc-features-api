@@ -1,6 +1,25 @@
-import { ParametersByLocation, ParametersMap } from "exegesis-express";
+import { ParametersByLocation, ParametersMap, oas3 } from "exegesis-express";
 import { FinalCollectionConfiguration } from "./collections.ts";
+declare module "exegesis-express" {
+  interface ExegesisContext {
+    api: ExegesisApiObj;
+  }
+  interface ExegesisPluginContext {
+    api:ExegesisApiObj
+  }
+}
 
+interface ExegesisApiObj {
+  openApiDoc:oas3.OpenAPIObject;
+  serverPtr?:any;
+  serverObject?: oas3.ServerObject;
+  pathItemPtr: string;
+  pathItemObject: oas3.PathItemObject;
+  operationPtr: string;
+  operationObject: oas3.OperationObject;
+  requestBodyMediaTypePtr?:string;
+  requestBodyMediaTypeObject?: oas3.MediaTypeObject
+}
 interface CollectionConfiguration {
   modelName: string;
   dateTimeColName: string;

@@ -57,7 +57,18 @@ function makeExegesisPlugin(data: { apiDoc: any }): ExegesisPluginInstance {
         //offsetlimitplugin
         params = offsetLimitPluginFunction(params);
       } catch (error) {
-        throwErrorToExegesis(ctx, error);
+        console.log(error);
+        let errCode = parseInt(error.message);
+        errCode = !isNaN(errCode) ? errCode : 500;
+        ctx.res.status(errCode).json(
+          errCode === 400
+            ? ctx.makeValidationError(error.cause.message || error.cause, {
+                in: "query",
+                name: error.cause.name || error.cause,
+                docPath: ctx.api.pathItemPtr,
+              })
+            : ctx.makeError(errCode, error.cause)
+        );
       }
     },
   };
