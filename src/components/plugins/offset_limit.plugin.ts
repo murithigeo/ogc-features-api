@@ -11,7 +11,7 @@ export default function offsetLimitPluginFunction(
   const { query } = params;
   const { offset, limit, local } = query;
   if ("offset" in query) {
-    local.offset = offset < 0 ? 0 : offset;
+    local.offset = (typeof offset==="string"&& offset==="NaN")||!offset ? 0 : offset;
   }
   if ("limit"in query) {
     local.limit = limit < 0 ? 0 : limit;

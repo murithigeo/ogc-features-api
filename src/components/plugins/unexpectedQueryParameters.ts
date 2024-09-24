@@ -11,29 +11,29 @@ function makeExegesisPlugin(
 ): ExegesisPluginInstance {
   return {
     postSecurity: async (ctx: ExegesisPluginContext) => {
-      try {
-        const reqUrl = new URL(ctx.api.serverObject.url + ctx.req.url);
-        const oasListedQueryParams = (await ctx.getParams()).query;
-        //Access all params present on req.url
-        const allQueryParams = Array.from(
-          new URLSearchParams(reqUrl.search).keys()
+      const reqUrl = new URL(ctx.api.serverObject.url + ctx.req.url);
+      const oasListedQueryParams = (await ctx.getParams()).query;
+      //Access all params present on req.url
+      const allQueryParams = Array.from(
+        new URLSearchParams(reqUrl.search).keys()
+      );
+
+      const allowedQueryParams: string[] = []
+        .concat(Object.keys(oasListedQueryParams))
+        .concat(undocumentedQueryParamsToIgnore);
+
+      const unexpectedParams = allQueryParams.filter(
+        (param) => !allowedQueryParams.includes(param)
+      );
+
+      if (unexpectedParams.length > 0) {
+        ctx.res.status(400).json(
+          ctx.makeValidationError("unexpected query parameters sent", {
+            in: "query",
+            name: unexpectedParams.join(","),
+            docPath: ctx.api.pathItemPtr,
+          })
         );
-
-        const allowedQueryParams: string[] = []
-          .concat(Object.keys(oasListedQueryParams))
-          .concat(undocumentedQueryParamsToIgnore);
-
-        const unexpectedParams = allQueryParams.filter(
-          (param) => !allowedQueryParams.includes(param)
-        );
-
-        if (unexpectedParams.length > 0) {
-          throw new Error("400", {
-            cause: `Unexpected query parameters: ${unexpectedParams.join(", ")}`,
-          });
-        }
-      } catch (err) {
-        throwErrorToExegesis(ctx, err);
       }
     },
   };

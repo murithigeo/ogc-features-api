@@ -34,7 +34,7 @@ const conformanceController = {
           throw new Error("400", { cause: "unsupported content-type neg" });
       }
     } catch (error) {
-      throwErrorToExegesis(ctx, error);
+      throwErrorToExegesis(ctx);
     }
   },
 };

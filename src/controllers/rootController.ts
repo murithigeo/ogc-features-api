@@ -30,7 +30,7 @@ async function getRoot(ctx: ExegesisContext) {
         throw new Error("400", { cause: "unsupported ct-type" });
     }
   } catch (error) {
-    throwErrorToExegesis(ctx, error);
+    throwErrorToExegesis(ctx, );
   }
 }
 

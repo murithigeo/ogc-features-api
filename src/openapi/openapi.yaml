@@ -814,9 +814,12 @@ components:
       name: offset
       required: false
       schema:
-        minimum: 0
-        default: 0
-        type: integer
+        oneOf:
+          - type: string
+            enum:
+              - NaN
+          - type: integer
+            minimum: 0
       style: form
       explode: false
     f:

@@ -48,14 +48,14 @@ async function getCollections(ctx: ExegesisContext) {
 }
 async function getCollectionOne(ctx: ExegesisContext) {
   try {
-    const localParams = ctx.params.query.local;
+    const { contentNegotiation } = ctx.params.query.local;
 
     const _collectionDoc = await genCollectionInfo(ctx.params);
-    switch (localParams.contentNegotiation.f) {
+    switch (contentNegotiation.f) {
       case "YAML":
         ctx.res
           .status(200)
-          .set("content-type", localParams.contentNegotiation.contentType)
+          .set("content-type", "text/yaml")
           .setBody(await convertJsonToYAML(_collectionDoc));
         break;
       case "JSON":
@@ -65,7 +65,7 @@ async function getCollectionOne(ctx: ExegesisContext) {
         throw new Error("400", { cause: "unsupported content-type" });
     }
   } catch (error) {
-    throwErrorToExegesis(ctx, error);
+    throwErrorToExegesis(ctx);
   }
 }
 

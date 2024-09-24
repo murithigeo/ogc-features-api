@@ -6,6 +6,7 @@ import {
   CTInterface,
   ExegesisParametersObject,
   FourItemBbox,
+  Link,
   SixItemBbox,
 } from "../types.js";
 import models from "../models/index.js";
@@ -31,7 +32,7 @@ export default async function genCollectionInfo(
     url: URL;
   } = xparams.query.local;
   const { modelName, datetimeColName }: FinalCollectionConfiguration = mtColl;
-  const { collectionId } = xparams.path;
+  let collectionId = xparams.path.collectionId || mtColl.collectionId;
   const { allowZ } = xparams.query;
 
   //Instantiate extent_bbox
@@ -47,20 +48,14 @@ export default async function genCollectionInfo(
     datetimeColName
   );
 
-  let isUTC: boolean = false;
-  //Use first array to identify trs. Use CRS if the first interval element has hours
-  if (
+  let isUTC: boolean =
     dateTimeValidator(tempInterval[0][0]) &&
-    dateTimeValidator(tempInterval[0][1])
-  ) {
-    isUTC = true;
-  }
+    dateTimeValidator(tempInterval[0][1]);
 
   //Get zmin & zmax before deletion
   const zMin = extent_bbox[0][2];
   const zMax = extent_bbox[0][5];
-console.log(allowZ)
-  if ((!zMax && !zMin ) || !allowZ) {
+  if ((!zMax && !zMin) || !allowZ) {
     extent_bbox = [
       [
         extent_bbox[0][0],
@@ -72,7 +67,11 @@ console.log(allowZ)
   }
   const collectionURL = new URL(url);
   collectionURL.search = "";
-  collectionURL.pathname = collectionURL.pathname + "/items";
+  collectionURL.pathname =
+    collectionURL.pathname +
+    (route.path === "/collections/{collectionId}"
+      ? "/items"
+      : `/${collectionId}/items`);
   const links =
     route.path === "/collections/{collectionId}"
       ? (
@@ -85,7 +84,15 @@ console.log(allowZ)
           title: "View Items",
           type: "application/geo+json",
         })
-      : undefined;
+      : ([
+          {
+            href: collectionURL.href,
+            rel: "items",
+            type: "application/geo+json",
+            title: `View Items`,
+          },
+        ] as Link[]);
+
   return {
     id: collectionId ?? mtColl.collectionId,
     crs: mtColl.crs,
