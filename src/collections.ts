@@ -7,7 +7,7 @@ const collections: CollectionConfiguration[] = [
     storageCrsCode: "CRS84h",
     geometryColumnName: "geom",
     collectionId: "points",
-    supportedCrs: ["CRS84", 4326, "CRS84h",],
+    supportedCrs: ["CRS84", 4326, "CRS84h", 4327],
     modelName: "mountains",
     dateTimeColName: null,
   },
