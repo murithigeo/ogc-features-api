@@ -18,6 +18,7 @@
     "npm:exegesis-express@4": "4.0.0",
     "npm:exegesis@*": "4.3.0_ajv@8.17.1",
     "npm:exegesis@^4.3.0": "4.3.0_ajv@8.17.1",
+    "npm:express@*": "5.1.0",
     "npm:express@^5.1.0": "5.1.0",
     "npm:morgan@*": "1.10.1",
     "npm:morgan@^1.10.1": "1.10.1",
@@ -1627,6 +1628,7 @@
       "npm:@types/node@*",
       "npm:exegesis-express@*",
       "npm:exegesis@*",
+      "npm:express@*",
       "npm:morgan@*",
       "npm:proj4@*",
       "npm:yaml@*"

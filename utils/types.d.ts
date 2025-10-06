@@ -39,12 +39,12 @@ export interface Extent {
   };
 }
 
-export type GeoJsonProperties = { [x: string]: unknown };
+export type GeoJsonProperties = { [x: string]: any };
 export interface Feature<
   G extends GeoJSON.Geometry = GeoJSON.Geometry,
   P extends GeoJsonProperties = GeoJsonProperties
 > extends GeoJSON.Feature<G, P> {
-  id: string | number;
+  id?: string | number;
   links?: Array<Link>;
 }
 
