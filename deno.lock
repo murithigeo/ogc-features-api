@@ -1636,6 +1636,7 @@
       "npm:express@*",
       "npm:morgan@*",
       "npm:proj4@*",
+      "npm:typescript@*",
       "npm:yaml@*"
     ],
     "packageJson": {

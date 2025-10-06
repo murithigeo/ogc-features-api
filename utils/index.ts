@@ -1,6 +1,7 @@
 export { booleanIntersects } from "@turf/boolean-intersects";
 export { bboxPolygon } from "@turf/bbox-polygon";
 export { bbox } from "@turf/bbox";
+//@ts-ignore module resolution error
 export { getHtmlDocument as generateOpenApiDoc } from "@scalar/core/libs/html-rendering";
 export * from "./projection.ts";
 export * from "./plugins/index.ts";
