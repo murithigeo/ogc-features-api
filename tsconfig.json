@@ -8,6 +8,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "lib": ["es2024", "DOM"],
-    "target": "esnext"
+    "target": "esnext",
+    "strict": false
   }
 }

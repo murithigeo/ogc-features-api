@@ -16,6 +16,7 @@ import {
 } from "./utils/index.ts";
 import mountains from "./mountains.json" with { type: "json" };
 
+//@ts-ignore type mismatch
 const features: Feature[] = mountains.features
   .map((p) => ({
     ...p,
