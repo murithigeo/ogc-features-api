@@ -4,6 +4,7 @@
     "name": "murithigeo",
     "url": "https://murithigeo.vercel.app"
   },
+  "types":"module",
   "dependencies": {
     "@scalar/core": "^0.3.18",
     "@turf/bbox": "^7.2.0",

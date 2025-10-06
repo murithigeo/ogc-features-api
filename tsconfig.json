@@ -1,8 +1,12 @@
 {
-  "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "verbatimModuleSyntax": true
-  }
+    "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "verbatimModuleSyntax": true,
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "lib": ["es2024","DOM"]
+    }
 }
