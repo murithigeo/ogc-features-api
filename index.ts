@@ -21,6 +21,7 @@ import {
   crsPlugin,
   paginationPlugin,
   bboxPlugin,
+  zPlugin
 } from "./utils/index.ts";
 import config from "./config.ts";
 
@@ -96,6 +97,7 @@ app.use(
           },
         }),
       }))(),
+      zPlugin(),
       bboxPlugin("bbox-crs"),
       paginationPlugin(100),
     ],

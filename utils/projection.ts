@@ -41,6 +41,7 @@ function toAuthCode(uri: string): keyof typeof crs {
   }
   //   //http://www.opengis.net/def/crs/OGC/1.3/CRS84
   else [, , authority, , code] = new URL(uri).pathname.substring(1).split("/");
+  //@ts-ignore types
   return `${authority.toUpperCase()}:${code}`;
 }
 
