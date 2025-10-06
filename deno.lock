@@ -24,6 +24,7 @@
     "npm:morgan@^1.10.1": "1.10.1",
     "npm:proj4@*": "2.19.10",
     "npm:proj4@^2.19.10": "2.19.10",
+    "npm:typescript@^5.9.3": "5.9.3",
     "npm:vitest@^3.2.4": "3.2.4_@types+node@24.2.0_vite@7.1.9__@types+node@24.2.0__yaml@2.8.1__picomatch@4.0.3_yaml@2.8.1",
     "npm:yaml@*": "2.8.1",
     "npm:yaml@^2.8.1": "2.8.1"
@@ -1496,6 +1497,10 @@
         "mime-types@3.0.1"
       ]
     },
+    "typescript@5.9.3": {
+      "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==",
+      "bin": true
+    },
     "undici-types@7.10.0": {
       "integrity": "sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag=="
     },
@@ -1647,6 +1652,7 @@
         "npm:express@^5.1.0",
         "npm:morgan@^1.10.1",
         "npm:proj4@^2.19.10",
+        "npm:typescript@^5.9.3",
         "npm:vitest@^3.2.4",
         "npm:yaml@^2.8.1"
       ]

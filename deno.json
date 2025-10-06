@@ -13,7 +13,8 @@
     "@turf/bbox": "npm:@turf/bbox",
     "yaml": "npm:yaml",
     "morgan": "npm:morgan",
-    "express":"npm:express"
+    "express":"npm:express",
+    "typescript":"npm:typescript"
   },
   "exports": {}
 }
